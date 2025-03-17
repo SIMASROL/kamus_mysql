@@ -1,0 +1,3 @@
+CREATE TABLE mahasiswa (
+  id INT AUTO_INCREMENT PRIMARY KEY
+);

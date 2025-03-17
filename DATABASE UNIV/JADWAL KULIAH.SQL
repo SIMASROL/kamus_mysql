@@ -1,0 +1,11 @@
+CREATE TABLE jadwal_kuliah (
+  id_jadwal_kuliah INT(20) AUTO_INCREMENT PRIMARY KEY,
+  kode_mk INT(20),
+  NIP VARCHAR(20),
+  hari VARCHAR NOT NULL,
+  jam_mulai VARCHAR,
+  jam_selesai VARCHAR,
+  ruang VARCHAR,
+  FOREIGN KEY (kode_mk) REFERENCES mata_kuliah(kode_mk) ON DELETE SET NULL ON UPDATE SET CASCADE,
+  FOREIGN KEY (NIP) REFERENCES dosen(NIP) ON DELETE SET NULL ON UPDATE SET CASCADE
+);

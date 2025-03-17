@@ -1,0 +1,4 @@
+CREATE TABLE FAKULTAS (
+  id_fakultas INT(12) AUTO_INCREMENT PRIMARY KEY,
+  nama_fakultas VARCHAR(50) NOT NULL
+);

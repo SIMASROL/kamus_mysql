@@ -1,0 +1,16 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "  ",
+  "steps": [
+    {
+      "file": "CREATE.SQL",
+      "description": "perintah tersebut untuk membuat table dengan nama mahasiswa",
+      "line": 4
+    },
+    {
+      "file": "CREATE.SQL",
+      "description": "pada baris ini terdapat coloumn dengan nama id_mahasiswa dengan tipe data INT dan terindikasi dengan AUTO_INCREMENT yang mana setiap data yang masuk akan secara otomatis diisi dan bertambah nilainya, kemudian ada PRIMARY KEY yang berarti ini adalah coloumn utama",
+      "line": 5
+    }
+  ]
+}

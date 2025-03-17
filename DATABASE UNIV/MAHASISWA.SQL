@@ -1,0 +1,12 @@
+CREATE TABLE mahasiswa (
+  NIM INT AUTO_INCREMENT PRIMARY KEY,
+  nama VARCHAR(100) NOT NULL,
+  tanggal_lahir DATE NOT NULL,
+  jenis_kelamin ENUM('PRIA', 'WANITA') NOT NULL,
+  alamat TEXT NOT NULL,
+  prodi_id INT(50) NOT NULL,
+  FOREIGN KEY (prodi_id) REFERENCES prodi(prodi_id) ON DELETE SET NULL ON UPDATE CASCADE
+)AUTO_INCREMENT = 2024000;
+
+-- bisa juga ditulis dengan
+-- ALTER TABLE mahasiswa AUTO_INCREMENT = 2024000;

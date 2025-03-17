@@ -1,0 +1,6 @@
+CREATE TABLE Barang (
+  Id_Barang INT AUTO_INCREMENT PRIMARY KEY,
+  Nama_Barang VARCHAR(100) NOT NULL UNIQUE,
+  Harga DECIMAL(12,2),
+  Stok INT
+);

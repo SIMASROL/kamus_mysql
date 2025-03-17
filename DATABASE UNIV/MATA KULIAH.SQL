@@ -1,0 +1,7 @@
+CREATE TABLE mata_kuliah (
+  kode_mk INT(20) AUTO_INCREMENT PRIMARY KEY,
+  nama_mk VARCHAR (50) NOT NULL,
+  SKS INT(2) NOT NULL,
+  prodi_id INT(50) NOT NULL,
+  FOREIGN KEY (prodi_id) REFERENCES prodi(id_prodi) ON DELETE SET NULL ON UPDATE CASCADE
+);

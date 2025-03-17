@@ -1,0 +1,1 @@
+insert into prodi (nama_prodi, fakultas_id) values ('TEKNOLOGI INFORMASI', 1);

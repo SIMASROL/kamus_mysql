@@ -1,0 +1,78 @@
+CREATE DATABASE universitas;
+
+USE universitas;
+
+CREATE TABLE fakultas (
+  id_fakultas INT(12) AUTO_INCREMENT PRIMARY KEY,
+  nama_fakultas VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE prodi (
+  id_prodi INT(12) AUTO_INCREMENT PRIMARY KEY,
+  nama_prodi VARCHAR(50) NOT NULL,
+  id_fakultas INT(12),
+  FOREIGN KEY (id_fakultas) REFERENCES fakultas(id_fakultas) ON DELETE SET NULL ON UPDATE CASCADE
+);
+
+CREATE TABLE mahasiswa (
+  NIM INT AUTO_INCREMENT PRIMARY KEY,
+  nama VARCHAR(100) NOT NULL,
+  tanggal_lahir DATE NOT NULL,
+  jenis_kelamin ENUM('PRIA', 'WANITA') NOT NULL,
+  alamat TEXT NOT NULL,
+  id_prodi INT(12),
+  FOREIGN KEY (id_prodi) REFERENCES prodi(id_prodi) ON DELETE SET NULL ON UPDATE CASCADE
+);
+ALTER TABLE mahasiswa AUTO_INCREMENT = 2024000;
+
+CREATE TABLE dosen (
+  NIP VARCHAR(20) PRIMARY KEY,
+  nama VARCHAR(100) NOT NULL,
+  email VARCHAR(100) UNIQUE,
+  no_telpon VARCHAR(15),
+  fakultas_id INT(12),
+  FOREIGN KEY (fakultas_id) REFERENCES fakultas(id_fakultas) ON DELETE SET NULL ON UPDATE CASCADE   
+);
+
+CREATE TABLE mata_kuliah (
+  kode_mk INT(20) AUTO_INCREMENT PRIMARY KEY,
+  nama_mk VARCHAR (50) NOT NULL,
+  SKS INT(2) NOT NULL,
+  prodi_id INT(12),
+  FOREIGN KEY (prodi_id) REFERENCES prodi(id_prodi) ON DELETE SET NULL ON UPDATE CASCADE
+);
+
+CREATE TABLE KRS (
+  id_krs INT AUTO_INCREMENT PRIMARY KEY,
+  NIM INT,
+  kode_mk INT,
+  semester INT NOT NULL,
+  tahun_ajaran INT DEFAULT 2024,  -- Bisa diubah sesuai tahun saat ini
+  FOREIGN KEY (NIM) REFERENCES mahasiswa(NIM) ON DELETE SET NULL ON UPDATE CASCADE,
+  FOREIGN KEY (kode_mk) REFERENCES mata_kuliah(kode_mk) ON DELETE SET NULL ON UPDATE CASCADE
+);
+
+
+CREATE TABLE jadwal_kuliah (
+  id_jadwal_kuliah INT AUTO_INCREMENT PRIMARY KEY,
+  kode_mk INT,
+  NIP VARCHAR(20),
+  hari VARCHAR(10) NOT NULL,
+  jam_mulai TIME,
+  jam_selesai TIME,
+  ruang VARCHAR(20),
+  FOREIGN KEY (kode_mk) REFERENCES mata_kuliah(kode_mk) ON DELETE SET NULL ON UPDATE CASCADE,
+  FOREIGN KEY (NIP) REFERENCES dosen(NIP) ON DELETE SET NULL ON UPDATE CASCADE
+);
+
+
+CREATE TABLE nilai (
+  id_nilai INT AUTO_INCREMENT PRIMARY KEY,
+  NIM INT(20),
+  kode_mk INT(20),
+  nilai DECIMAL NOT NULL,
+  FOREIGN KEY (NIM) REFERENCES mahasiswa(NIM) ON DELETE SET NULL ON UPDATE CASCADE,
+  FOREIGN KEY (kode_mk) REFERENCES mata_kuliah(kode_mk) ON DELETE SET NULL ON UPDATE CASCADE
+);
+
+

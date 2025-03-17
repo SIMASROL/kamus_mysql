@@ -1,0 +1,37 @@
+CREATE DATABASE penjualan_barang_masrul;
+
+USE penjualan_barang_masrul;
+
+CREATE TABLE Barang (
+  Id_Barang INT AUTO_INCREMENT PRIMARY KEY,
+  Nama_Barang VARCHAR(100) NOT NULL UNIQUE,
+  Harga DECIMAL(12,2),
+  Stok INT
+);
+
+CREATE TABLE Pelanggan (
+  Id_Pelanggan INT AUTO_INCREMENT PRIMARY KEY,
+  Nama VARCHAR(100) NOT NULL,
+  Alamat TEXT NOT NULL,
+  Pekerjaan VARCHAR(20),
+  No_KTP VARCHAR(16) NOT NULL UNIQUE,
+  No_tlp VARCHAR(13) NOT NULL
+);
+
+CREATE TABLE Nota_penjualan (
+  Id_Nota INT AUTO_INCREMENT PRIMARY KEY,
+  Tgl_Nota DATETIME DEFAULT CURRENT_TIMESTAMP,
+  Total DECIMAL(12,2),
+  Id_pelanggan INT,
+  FOREIGN KEY (Id_Pelanggan) REFERENCES Pelanggan (Id_Pelanggan) ON DELETE SET NULL ON UPDATE CASCADE
+);
+
+CREATE TABLE Detail_Jual (
+  Id_Nota INT,
+  Id_Barang INT,
+  Jumlah INT,
+  Harga DECIMAL(12,2),
+  PRIMARY KEY (Id_Nota, Id_Barang),
+  FOREIGN KEY (Id_Nota) REFERENCES Nota_penjualan (Id_Nota) ON DELETE SET NULL ON UPDATE CASCADE,
+  FOREIGN KEY (Id_Barang) REFERENCES Barang (Id_Barang) ON DELETE SET NULL ON UPDATE CASCADE
+);
